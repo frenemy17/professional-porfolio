@@ -337,6 +337,16 @@ export default function Hero({
             <a
               key={index}
               href={button.href}
+              download={button.download}
+              onClick={button.download ? (e) => {
+                e.preventDefault();
+                const link = document.createElement('a');
+                link.href = button.href;
+                link.download = 'Siddhanth_Raikar_Resume.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              } : undefined}
               className={`rounded-2xl border border-white/20 px-8 py-4 text-base font-light tracking-wide transition-all focus:outline-none focus:ring-2 focus:ring-white/30 duration-300 hover:scale-105 transform ${
                 button.primary
                   ? "bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 shadow-lg"
