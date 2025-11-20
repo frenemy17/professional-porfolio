@@ -32,7 +32,7 @@ export default function ContactSection() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: 'YOUR_ACCESS_KEY_HERE',
+          access_key: 'd733fdf7-949b-462e-8b66-761a6b179165',
           name: formData.name,
           email: formData.email,
           message: formData.message,
