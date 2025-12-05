@@ -21,9 +21,9 @@ export default function ProjectsSection() {
       className: "col-span-1 lg:col-span-3 border-b border-white/10",
     },
     {
-      title: "Travel Story",
-      description: "Interactive travel journaling tool with drag-and-drop canvas, media uploads, and PDF export functionality.",
-      skeleton: <ProjectPin title="Travel Story" href="https://travel-storyy.netlify.app/" image="https://images.pexels.com/photos/1008155/pexels-photo-1008155.jpeg" />,
+      title: "Gemtrack",
+      description: "a full-stack web POS and inventory system for jewelers with secure auth, advanced item management, barcode billing, customer profiles, and analytics powered by live metal rates.",
+        skeleton: <ProjectPin title="Gemtrack" href="https://gem-track-five.vercel.app/login" image="https://images.pexels.com/photos/1927259/pexels-photo-1927259.jpeg" />,
       className: "col-span-1 lg:col-span-2 lg:border-r border-white/10",
     },
     {
