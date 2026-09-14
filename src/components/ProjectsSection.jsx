@@ -1,36 +1,90 @@
 "use client";
 import React from "react";
 import { cn } from "@/lib/utils";
-import createGlobe from "cobe";
-import { useEffect, useRef } from "react";
-import { motion } from "motion/react";
 import { PinContainer } from "./ui/3d-pin";
 
 export default function ProjectsSection() {
   const features = [
     {
-      title: "eduConnect",
-      description: "Full-stack educational platform used to connect with peers and learn together with React, Node.js, and MongoDB.",
-      skeleton: <ProjectPin title="eduConnect" href="https://final-endsem-capstone-project.onrender.com/login" image="https://images.pexels.com/photos/167682/pexels-photo-167682.jpeg" />,
+      title: "EstateX",
+      tagline: "AI-Powered Real Estate Lead Management Platform",
+      bullets: [
+        "Architected a multi-agent orchestration system with LangGraph and the Google Gemini API — a state-machine pipeline with conditional routing and human-in-the-loop interrupts that autonomously qualifies, scores, and nurtures real estate leads.",
+        "Engineered an LLM-driven supervisor agent that delegates work across specialized nodes (qualification, sentiment analysis, follow-ups), with async checkpointing and persistent memory via MongoDB Atlas.",
+        "Shipped a production-grade FastAPI backend — 138+ automated tests, JWT authentication, deployed across Vercel and Render with CI/CD."
+      ],
+      tech: ["Python", "LangGraph", "Google Gemini API", "FastAPI", "MongoDB Atlas", "JWT", "Pytest"],
+      github: "https://github.com/frenemy17/estatex.git",
+      demo: "https://estatex-dun.vercel.app/",
+      skeleton: (
+        <ProjectPin
+          title="EstateX Demo"
+          href="https://estatex-dun.vercel.app/"
+          image="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1000&auto=format&fit=crop"
+        />
+      ),
       className: "col-span-1 lg:col-span-3 border-b lg:border-r border-white/10",
     },
     {
-      title: "Code Showcase",
-      description: "Interactive code examples and snippets from various projects and experiments.",
-      skeleton: <CodeBlock />,
+      title: "GemTrack",
+      tagline: "Full-Stack POS & Inventory Platform",
+      date: "November 2025",
+      bullets: [
+        "Built a production full-stack POS and inventory system for active jewelry retail users, integrating real-time GoldAPI market pricing into live billing and settlement.",
+        "Optimized server-side search and data pipelines to handle 10,000+ inventory items with live purity, weight, and HUID tracking.",
+        "Delivered a CRM and analytics layer with detailed customer profiles and sales logs to support data-driven business decisions."
+      ],
+      tech: ["Next.js", "React", "Node.js", "Express.js", "PostgreSQL", "Prisma ORM", "JWT", "GoldAPI"],
+      github: "https://github.com/frenemy17/gemTrack",
+      demo: "https://gem-track-five.vercel.app/",
+      skeleton: (
+        <ProjectPin
+          title="GemTrack Demo"
+          href="https://gem-track-five.vercel.app/"
+          image="https://images.pexels.com/photos/1927259/pexels-photo-1927259.jpeg"
+        />
+      ),
       className: "col-span-1 lg:col-span-3 border-b border-white/10",
     },
     {
-      title: "Gemtrack",
-      description: "a full-stack web POS and inventory system for jewelers with secure auth, advanced item management, barcode billing, customer profiles, and analytics powered by live metal rates.",
-        skeleton: <ProjectPin title="Gemtrack" href="https://gem-track-five.vercel.app/login" image="https://images.pexels.com/photos/1927259/pexels-photo-1927259.jpeg" />,
-      className: "col-span-1 lg:col-span-2 lg:border-r border-white/10",
+      title: "Wraft",
+      tagline: "AI-Powered Chatbot SaaS Platform",
+      bullets: [
+        "Built a multi-tenant SaaS platform enabling businesses to create custom AI chatbots trained on their own data (PDFs, URLs, sitemaps), with RAG-based retrieval, vector similarity search, and automated knowledge-base retraining via cron pipelines.",
+        "Engineered real-time chat across web widget and WhatsApp (Meta Cloud API) channels, with conversation analytics, lead capture, usage-based billing via Razorpay, and quiet-hour-aware owner notifications.",
+        "Implemented a full ingestion pipeline (extraction → chunking → embedding → vector storage) with Gemini embeddings, Redis-backed response caching, rate limiting, and an admin analytics dashboard."
+      ],
+      tech: ["Next.js", "FastAPI", "Supabase", "Redis", "Gemini AI", "Razorpay"],
+      github: null,
+      demo: "https://wraft-website-phi.vercel.app/",
+      skeleton: (
+        <ProjectPin
+          title="Wraft Demo"
+          href="https://wraft-website-phi.vercel.app/"
+          image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1000&auto=format&fit=crop"
+        />
+      ),
+      className: "col-span-1 lg:col-span-3 border-b lg:border-b-0 lg:border-r border-white/10",
     },
     {
-      title: "Global Reach",
-      description: "Projects deployed worldwide with users across different continents and time zones.",
-      skeleton: <Globe className="absolute -right-10 md:-right-10 -bottom-80 md:-bottom-72" />,
-      className: "col-span-1 lg:col-span-4",
+      title: "Intelligent Exam Question Analysis & Agentic Assessment Design",
+      tagline: "ML & Agentic Assessment Design",
+      bullets: [
+        "Built a Bloom’s Taxonomy classifier (91.19% accuracy, Logistic Regression + Random Forest Voting Ensemble) and a TF-IDF-based difficulty predictor (Easy/Moderate/Hard).",
+        "Built a 5-node LangGraph agent for autonomous gap analysis, identifying learning gaps and generating targeted assessment recommendations.",
+        "Implemented an evidence-based RAG pipeline with ChromaDB, grounded in 10+ educational frameworks for context-aware outputs."
+      ],
+      tech: ["Python", "Streamlit", "Scikit-learn", "LangGraph", "ChromaDB", "Groq AI", "TF-IDF", "Voting Ensembles"],
+      github: "https://github.com/frenemy17/genAI-project.git",
+      demo: "https://genai-project-3tze9npwg4iz22mhjssdq3.streamlit.app/",
+      skeleton: (
+        <ProjectPin
+          title="Exam Intelligence Demo"
+          href="https://genai-project-3tze9npwg4iz22mhjssdq3.streamlit.app/"
+          image="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop"
+        />
+      ),
+      className: "col-span-1 lg:col-span-3",
     },
   ];
 
@@ -43,15 +97,69 @@ export default function ProjectsSection() {
             Featured Projects
           </h2>
           <p className="text-lg lg:text-xl max-w-2xl my-4 mx-auto text-white/70 text-center font-light" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
-            A showcase of my recent work and technical expertise across different domains and technologies.
+            A showcase of my recent work across agentic AI workflows, multi-agent orchestration, and production-grade full-stack systems.
           </p>
         </div>
         <div className="relative px-6">
           <div className="grid grid-cols-1 lg:grid-cols-6 mt-12 border rounded-2xl border-white/10 overflow-hidden backdrop-blur-sm bg-white/[0.02]">
             {features.map((feature) => (
               <FeatureCard key={feature.title} className={feature.className}>
-                <FeatureTitle>{feature.title}</FeatureTitle>
-                <FeatureDescription>{feature.description}</FeatureDescription>
+                <div>
+                  <div className="flex items-baseline justify-between gap-2 mb-1">
+                    <FeatureTitle>{feature.title}</FeatureTitle>
+                    {feature.date && (
+                      <span className="text-xs text-white/40 font-mono whitespace-nowrap">{feature.date}</span>
+                    )}
+                  </div>
+                  {feature.tagline && (
+                    <p className="text-xs uppercase tracking-wider text-white/40 mb-3 font-mono">
+                      {feature.tagline}
+                    </p>
+                  )}
+
+                  <ul className="text-xs text-white/65 space-y-2 mb-4 font-mono leading-relaxed list-disc list-outside pl-4">
+                    {feature.bullets.map((bullet, idx) => (
+                      <li key={idx}>{bullet}</li>
+                    ))}
+                  </ul>
+
+                  {/* Tech Stack Chips */}
+                  <div className="flex flex-wrap gap-1.5 mb-4">
+                    {feature.tech.map((t) => (
+                      <span
+                        key={t}
+                        className="text-[11px] px-2.5 py-0.5 rounded-full bg-white/5 border border-white/10 text-white/70 font-mono"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Embedded Links */}
+                  <div className="flex items-center gap-4 mb-6 text-xs font-mono">
+                    {feature.github && (
+                      <a
+                        href={feature.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/70 hover:text-white flex items-center gap-1.5 transition-colors underline decoration-white/30 underline-offset-4"
+                      >
+                        <span>GitHub ↗</span>
+                      </a>
+                    )}
+                    {feature.demo && (
+                      <a
+                        href={feature.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-white/70 hover:text-white flex items-center gap-1.5 transition-colors underline decoration-white/30 underline-offset-4"
+                      >
+                        <span>Live Demo ↗</span>
+                      </a>
+                    )}
+                  </div>
+                </div>
+
                 <div className="h-full w-full">{feature.skeleton}</div>
               </FeatureCard>
             ))}
@@ -64,7 +172,7 @@ export default function ProjectsSection() {
 
 const FeatureCard = ({ children, className }) => {
   return (
-    <div className={cn(`p-6 sm:p-8 relative overflow-hidden hover:bg-white/[0.02] transition-all duration-500`, className)}>
+    <div className={cn(`p-6 sm:p-8 relative overflow-hidden hover:bg-white/[0.02] transition-all duration-500 flex flex-col justify-between`, className)}>
       {children}
     </div>
   );
@@ -72,23 +180,15 @@ const FeatureCard = ({ children, className }) => {
 
 const FeatureTitle = ({ children }) => {
   return (
-    <h3 className="text-xl md:text-2xl font-light tracking-tight text-white mb-3 leading-snug" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
+    <h3 className="text-xl md:text-2xl font-light tracking-tight text-white mb-1 leading-snug" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
       {children}
     </h3>
   );
 };
 
-const FeatureDescription = ({ children }) => {
-  return (
-    <p className="text-sm md:text-base text-white/60 font-light leading-relaxed mb-6 max-w-sm" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
-      {children}
-    </p>
-  );
-};
-
 const ProjectPin = ({ title, href, image }) => {
   return (
-    <div className="h-[400px] w-full flex items-center justify-center">
+    <div className="h-[380px] w-full flex items-center justify-center">
       <PinContainer title={title} href={href}>
         <div className="flex basis-full flex-col p-6 tracking-tight text-slate-100/50 w-[300px] h-[300px]">
           <h3 className="max-w-xs !pb-2 !m-0 font-light text-xl text-slate-100" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
@@ -96,152 +196,14 @@ const ProjectPin = ({ title, href, image }) => {
           </h3>
 
           {image ? (
-            <div className="flex flex-1 w-full rounded-xl overflow-hidden">
+            <div className="flex flex-1 w-full rounded-xl overflow-hidden mt-2">
               <img src={image} alt={title} className="w-full h-full object-cover" />
             </div>
           ) : (
-            <div className="flex flex-1 w-full rounded-xl bg-gradient-to-br from-violet-500/80 via-purple-500/80 to-blue-500/80" />
+            <div className="flex flex-1 w-full rounded-xl bg-gradient-to-br from-violet-500/80 via-purple-500/80 to-blue-500/80 mt-2" />
           )}
         </div>
       </PinContainer>
     </div>
-  );
-};
-
-const CodeBlock = () => {
-  const [isHovered, setIsHovered] = React.useState(false);
-  const [typedText, setTypedText] = React.useState('');
-  const [currentChar, setCurrentChar] = React.useState(0);
-
-  const fullCode = `// React Component
-const ProjectCard = () => {
-  return (
-    <div className="card">
-      Hello World
-    </div>
-  );
-}`;
-
-  React.useEffect(() => {
-    if (isHovered) {
-      setTypedText('');
-      setCurrentChar(0);
-      
-      const typeInterval = setInterval(() => {
-        setCurrentChar(prev => {
-          if (prev < fullCode.length) {
-            setTypedText(fullCode.slice(0, prev + 1));
-            return prev + 1;
-          } else {
-            clearInterval(typeInterval);
-            return prev;
-          }
-        });
-      }, 40);
-
-      return () => clearInterval(typeInterval);
-    } else {
-      setTypedText('');
-      setCurrentChar(0);
-    }
-  }, [isHovered]);
-
-  const formatCode = (text) => {
-    return text
-      .replace(/(\/\/ React Component)/g, '<span class="text-green-400">$1</span>')
-      .replace(/(const|return)/g, '<span class="text-blue-400">$1</span>')
-      .replace(/(ProjectCard)/g, '<span class="text-yellow-400">$1</span>')
-      .replace(/(<div|<\/div>)/g, '<span class="text-purple-400">$1</span>')
-      .replace(/(className="card")/g, '<span class="text-purple-400">$1</span>')
-      .replace(/(\{|\})/g, '<span class="text-blue-400">$1</span>');
-  };
-
-  return (
-    <div 
-      className="relative flex py-8 px-4 h-full min-h-[400px] cursor-pointer group"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="w-full p-6 mx-auto bg-black/40 backdrop-blur-sm shadow-2xl h-full rounded-xl border border-white/10 group-hover:border-white/20 transition-all duration-500">
-        <div className="flex flex-1 w-full h-full flex-col">
-          <div className="bg-black/60 rounded-lg p-6 font-mono text-sm h-full relative backdrop-blur-sm">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-            </div>
-            {isHovered ? (
-              <div className="text-white/90">
-                <pre 
-                  className="whitespace-pre-wrap leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: formatCode(typedText) }}
-                />
-                <motion.span 
-                  className="inline-block w-2 h-5 bg-green-400 ml-1"
-                  animate={{ opacity: [1, 0, 1] }}
-                  transition={{ duration: 0.8, repeat: Infinity }}
-                />
-              </div>
-            ) : (
-              <div className="leading-relaxed">
-                <div className="text-green-400/80 mb-2">// React Component</div>
-                <div className="text-blue-400/80 mb-1">const <span className="text-yellow-400/80">ProjectCard</span> = () =&gt; {'{'}</div>
-                <div className="text-white/80 ml-4 mb-1">return (</div>
-                <div className="text-purple-400/80 ml-8 mb-1">&lt;div className="card"&gt;</div>
-                <div className="text-white/80 ml-12 mb-1">Hello World</div>
-                <div className="text-purple-400/80 ml-8 mb-1">&lt;/div&gt;</div>
-                <div className="text-white/80 ml-4 mb-1">);</div>
-                <div className="text-blue-400/80">{'}'}</div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export const Globe = ({ className }) => {
-  const canvasRef = useRef(null);
-
-  useEffect(() => {
-    let phi = 0;
-
-    if (!canvasRef.current) return;
-
-    const globe = createGlobe(canvasRef.current, {
-      devicePixelRatio: 2,
-      width: 600 * 2,
-      height: 600 * 2,
-      phi: 0,
-      theta: 0,
-      dark: 1,
-      diffuse: 1.2,
-      mapSamples: 16000,
-      mapBrightness: 6,
-      baseColor: [0.3, 0.3, 0.3],
-      markerColor: [0.1, 0.8, 1],
-      glowColor: [1, 1, 1],
-      markers: [
-        { location: [37.7595, -122.4367], size: 0.03 },
-        { location: [40.7128, -74.006], size: 0.1 },
-      ],
-      onRender: (state) => {
-        state.phi = phi;
-        phi += 0.01;
-      },
-    });
-
-    return () => {
-      globe.destroy();
-    };
-  }, []);
-
-  return (
-    <canvas
-      ref={canvasRef}
-      style={{ width: 600, height: 600, maxWidth: "100%", aspectRatio: 1 }}
-      className={className}
-    />
   );
 };

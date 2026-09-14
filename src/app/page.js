@@ -5,8 +5,6 @@ import Hero from "@/components/ui/neural-network-hero";
 import DotGrid from "@/components/DotGrid";
 import { CometCard } from "@/components/ui/comet-card";
 import GradualBlur from "@/components/GradualBlur";
-import LaserFlowBoxExample from "@/components/ui/laserwrap";
-import LaserFlow from "@/components/LaserFlow";
 import { MarqueeDemo } from "@/components/marqueewrap";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -52,14 +50,14 @@ export default function Portfolio() {
       <section id="home" className="relative z-10">
         <Hero 
           title="Siddhanth Raikar"
-          description={<LayoutTextFlip text="Full Stack Developer" words={["150+ LeetCode Problems Solved", "Building Scalable Web Apps", "Clean Code & Problem Solving", "Next.js & REST APIs Expert"]} duration={2500} />}
+          description={<LayoutTextFlip text="Aspiring AI Engineer" words={["Applied AI & Agentic Systems", "Multi-Agent Orchestration", "RAG Pipelines & ChromaDB", "FastAPI & LangGraph Expert"]} duration={2500} />}
           badgeText="Portfolio"
-          badgeLabel="2024"
+          badgeLabel="2026"
           ctaButtons={[
             { text: "Download Resume", href: "/resume.pdf", primary: true, download: true },
             { text: "Contact Me", href: "#contact" }
           ]}
-          microDetails={["React", "Next.js", "TypeScript"]}
+          microDetails={["Python", "LangGraph", "FastAPI", "Gemini API"]}
         />
       </section>
 
@@ -103,17 +101,37 @@ export default function Portfolio() {
                 </div>
               </CometCard>
             </div>
-            <div className="bg-white/5 border border-white/10 rounded-lg p-8">
-              <p className="text-lg text-white/70 leading-relaxed mb-4" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
-                <b>I&apos;m a creative and passionate Full Stack Developer with expertise in modern web technologies. 
-                I love crafting innovative digital experiences that blend beautiful design with 
-                robust functionality.</b>
-              </p>
-              <p className="text-lg text-white/70 leading-relaxed" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
-                <b>With a strong foundation in React, Next.js, and TypeScript, I build scalable 
-                applications that deliver exceptional user experiences. I&apos;m eager to learn new technologies 
-                and always exploring ways to push the boundaries of what&apos;s possible on the web.</b>
-              </p>
+            <div className="bg-white/5 border border-white/10 rounded-lg p-8 flex flex-col justify-between">
+              <div>
+                <p className="text-xs uppercase tracking-widest text-white/40 mb-3" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
+                  Applied AI &amp; Agentic Systems Focus
+                </p>
+                <p className="text-lg text-white/90 leading-relaxed mb-4" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
+                  <b>AI/Data Science undergraduate with hands-on experience designing end-to-end agentic AI workflows, multi-agent orchestration systems, and RAG pipelines.</b>
+                </p>
+                <p className="text-base text-white/70 leading-relaxed mb-6" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
+                  Proficient in Python, LangGraph, Scikit-learn, and vector databases (ChromaDB), paired with solid backend API development (FastAPI, Node.js). Looking to apply this production-oriented AI/ML experience as an AI/ML Intern.
+                </p>
+              </div>
+
+              <div className="pt-6 border-t border-white/10 space-y-3">
+                <p className="text-xs uppercase tracking-widest text-white/40" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
+                  Education
+                </p>
+                <div>
+                  <div className="flex justify-between items-baseline text-sm text-white/90 font-medium" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
+                    <span>Bachelor of Technology, Data Science</span>
+                    <span className="text-xs text-white/50">2024 – 2028</span>
+                  </div>
+                  <div className="text-xs text-white/60 mt-0.5" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
+                    Newton School of Technology, Rishihood University | CGPA: 7.64 / 10.0
+                  </div>
+                </div>
+                <div className="text-xs text-white/50 flex flex-wrap gap-x-4 gap-y-1" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
+                  <span>Intermediate (Class XII): TLC PU College, Mangalore (91.0%)</span>
+                  <span>Matriculation (Class X): Sharada Vidyanikethana (95.6%)</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -140,7 +158,7 @@ export default function Portfolio() {
           <div className="mb-6">
             <h3 className="text-xl font-light text-white mb-2" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>Siddhanth Raikar</h3>
             <p className="text-white/60 text-sm" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
-              Full Stack Developer & Creative Technologist
+              Aspiring AI Engineer · Applied AI &amp; Agentic Systems
             </p>
           </div>
           <div className="flex justify-center gap-8 mb-6">
@@ -151,7 +169,7 @@ export default function Portfolio() {
           </div>
           <div className="border-t border-white/10 pt-6">
             <p className="text-white/40 text-xs" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>
-              © 2024 Siddhanth Raikar. Built with Next.js, Framer Motion & Three.js
+              © 2026 Siddhanth Raikar. Built with Next.js, Framer Motion & Three.js
             </p>
           </div>
         </div>

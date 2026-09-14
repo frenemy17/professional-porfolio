@@ -1,5 +1,5 @@
 'use client';
-import { useRef, useEffect, useCallback, useMemo } from 'react';
+import { useRef, useEffect, useCallback, useMemo, useState } from 'react';
 import { gsap } from 'gsap';
 import { InertiaPlugin } from 'gsap/InertiaPlugin';
 
@@ -44,9 +44,10 @@ const DotGrid = ({
   const wrapperRef = useRef(null);
   const canvasRef = useRef(null);
   const dotsRef = useRef([]);
+  const [isVisible, setIsVisible] = useState(false);
   const pointerRef = useRef({
-    x: 0,
-    y: 0,
+    x: -9999,
+    y: -9999,
     vx: 0,
     vy: 0,
     speed: 0,
@@ -57,14 +58,19 @@ const DotGrid = ({
 
   const baseRgb = useMemo(() => hexToRgb(baseColor), [baseColor]);
   const activeRgb = useMemo(() => hexToRgb(activeColor), [activeColor]);
+  const radius = dotSize / 2;
 
-  const circlePath = useMemo(() => {
-    if (typeof window === 'undefined' || !window.Path2D) return null;
-
-    const p = new Path2D();
-    p.arc(0, 0, dotSize / 2, 0, Math.PI * 2);
-    return p;
-  }, [dotSize]);
+  useEffect(() => {
+    if (!wrapperRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(wrapperRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   const buildGrid = useCallback(() => {
     const wrap = wrapperRef.current;
@@ -72,7 +78,8 @@ const DotGrid = ({
     if (!wrap || !canvas) return;
 
     const { width, height } = wrap.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
+    if (width === 0 || height === 0) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -81,9 +88,9 @@ const DotGrid = ({
     const ctx = canvas.getContext('2d');
     if (ctx) ctx.scale(dpr, dpr);
 
-    const cols = Math.floor((width + gap) / (dotSize + gap));
-    const rows = Math.floor((height + gap) / (dotSize + gap));
     const cell = dotSize + gap;
+    const cols = Math.floor((width + gap) / cell);
+    const rows = Math.floor((height + gap) / cell);
 
     const gridW = cell * cols - gap;
     const gridH = cell * rows - gap;
@@ -106,7 +113,7 @@ const DotGrid = ({
   }, [dotSize, gap]);
 
   useEffect(() => {
-    if (!circlePath) return;
+    if (!isVisible) return;
 
     let rafId;
     const proxSq = proximity * proximity;
@@ -119,29 +126,48 @@ const DotGrid = ({
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const { x: px, y: py } = pointerRef.current;
+      const dots = dotsRef.current;
 
-      for (const dot of dotsRef.current) {
+      // 1. Batch draw all idle base-colored dots in a single path
+      ctx.beginPath();
+      ctx.fillStyle = baseColor;
+      for (let i = 0; i < dots.length; i++) {
+        const dot = dots[i];
+        if (dot.xOffset === 0 && dot.yOffset === 0) {
+          const dx = dot.cx - px;
+          const dy = dot.cy - py;
+          if (dx * dx + dy * dy > proxSq) {
+            ctx.moveTo(dot.cx + radius, dot.cy);
+            ctx.arc(dot.cx, dot.cy, radius, 0, Math.PI * 2);
+          }
+        }
+      }
+      ctx.fill();
+
+      // 2. Only draw active or offset dots individually
+      for (let i = 0; i < dots.length; i++) {
+        const dot = dots[i];
         const ox = dot.cx + dot.xOffset;
         const oy = dot.cy + dot.yOffset;
         const dx = dot.cx - px;
         const dy = dot.cy - py;
         const dsq = dx * dx + dy * dy;
 
-        let style = baseColor;
-        if (dsq <= proxSq) {
-          const dist = Math.sqrt(dsq);
-          const t = 1 - dist / proximity;
-          const r = Math.round(baseRgb.r + (activeRgb.r - baseRgb.r) * t);
-          const g = Math.round(baseRgb.g + (activeRgb.g - baseRgb.g) * t);
-          const b = Math.round(baseRgb.b + (activeRgb.b - baseRgb.b) * t);
-          style = `rgb(${r},${g},${b})`;
+        if (dot.xOffset !== 0 || dot.yOffset !== 0 || dsq <= proxSq) {
+          ctx.beginPath();
+          if (dsq <= proxSq) {
+            const dist = Math.sqrt(dsq);
+            const t = 1 - dist / proximity;
+            const r = Math.round(baseRgb.r + (activeRgb.r - baseRgb.r) * t);
+            const g = Math.round(baseRgb.g + (activeRgb.g - baseRgb.g) * t);
+            const b = Math.round(baseRgb.b + (activeRgb.b - baseRgb.b) * t);
+            ctx.fillStyle = `rgb(${r},${g},${b})`;
+          } else {
+            ctx.fillStyle = baseColor;
+          }
+          ctx.arc(ox, oy, radius, 0, Math.PI * 2);
+          ctx.fill();
         }
-
-        ctx.save();
-        ctx.translate(ox, oy);
-        ctx.fillStyle = style;
-        ctx.fill(circlePath);
-        ctx.restore();
       }
 
       rafId = requestAnimationFrame(draw);
@@ -149,7 +175,7 @@ const DotGrid = ({
 
     draw();
     return () => cancelAnimationFrame(rafId);
-  }, [proximity, baseColor, activeRgb, baseRgb, circlePath]);
+  }, [isVisible, proximity, baseColor, activeRgb, baseRgb, radius]);
 
   useEffect(() => {
     buildGrid();
@@ -167,6 +193,8 @@ const DotGrid = ({
   }, [buildGrid]);
 
   useEffect(() => {
+    if (!isVisible) return;
+
     const onMove = e => {
       const now = performance.now();
       const pr = pointerRef.current;
@@ -189,6 +217,7 @@ const DotGrid = ({
       pr.vy = vy;
       pr.speed = speed;
 
+      if (!canvasRef.current) return;
       const rect = canvasRef.current.getBoundingClientRect();
       pr.x = e.clientX - rect.left;
       pr.y = e.clientY - rect.top;
@@ -217,6 +246,7 @@ const DotGrid = ({
     };
 
     const onClick = e => {
+      if (!canvasRef.current) return;
       const rect = canvasRef.current.getBoundingClientRect();
       const cx = e.clientX - rect.left;
       const cy = e.clientY - rect.top;
@@ -244,7 +274,7 @@ const DotGrid = ({
       }
     };
 
-    const throttledMove = throttle(onMove, 50);
+    const throttledMove = throttle(onMove, 30);
     window.addEventListener('mousemove', throttledMove, { passive: true });
     window.addEventListener('click', onClick);
 
@@ -252,7 +282,7 @@ const DotGrid = ({
       window.removeEventListener('mousemove', throttledMove);
       window.removeEventListener('click', onClick);
     };
-  }, [maxSpeed, speedTrigger, proximity, resistance, returnDuration, shockRadius, shockStrength]);
+  }, [isVisible, maxSpeed, speedTrigger, proximity, resistance, returnDuration, shockRadius, shockStrength]);
 
   return (
     <section

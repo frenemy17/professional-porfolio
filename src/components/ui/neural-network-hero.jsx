@@ -1,4 +1,4 @@
-'use client';;
+'use client';
 import { useRef, useMemo } from 'react';
 import { Canvas, useFrame, extend } from '@react-three/fiber';
 import { shaderMaterial } from '@react-three/drei';
@@ -6,9 +6,8 @@ import * as THREE from 'three';
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { SplitText } from 'gsap/SplitText';
 
-gsap.registerPlugin(SplitText, useGSAP);
+gsap.registerPlugin(useGSAP);
 
 // ===================== SHADER =====================
 const vertexShader = `
@@ -182,9 +181,8 @@ function ShaderPlane() {
 
 function ShaderBackground() {
   const canvasRef = useRef(null);
-  
   const camera = useMemo(() => ({ position: [0, 0, 1], fov: 75, near: 0.1, far: 1000 }), []);
-  
+
   useGSAP(() => {
     if (!canvasRef.current) return;
     
@@ -203,16 +201,16 @@ function ShaderBackground() {
       delay: 0.3
     });
   }, { scope: canvasRef });
-  
+
   return (
     <div
       ref={canvasRef}
-      className="bg-black absolute inset-0 -z-10 w-full h-full"
+      className="bg-black absolute inset-0 -z-10 w-full h-full overflow-hidden"
       aria-hidden>
       <Canvas
         camera={camera}
-        gl={{ antialias: true, alpha: false }}
-        dpr={[1, 2]}
+        gl={{ antialias: false, alpha: false, powerPreference: "high-performance" }}
+        dpr={[1, 1.25]}
         style={{ width: '100%', height: '100%' }}>
         <ShaderPlane />
       </Canvas>
@@ -250,12 +248,7 @@ export default function Hero({
     if (!headerRef.current) return;
 
     document.fonts.ready.then(() => {
-      const split = new SplitText(headerRef.current, {
-        type: 'lines',
-        wordsClass: 'lines',
-      });
-
-      gsap.set(split.lines, {
+      gsap.set(headerRef.current, {
         filter: 'blur(16px)',
         yPercent: 30,
         autoAlpha: 0,
@@ -285,13 +278,12 @@ export default function Hero({
         tl.to(badgeRef.current, { autoAlpha: 1, y: 0, duration: 0.5 }, 0.0);
       }
 
-      tl.to(split.lines, {
+      tl.to(headerRef.current, {
         filter: 'blur(0px)',
         yPercent: 0,
         autoAlpha: 1,
         scale: 1,
         duration: 0.9,
-        stagger: 0.15,
       }, 0.1);
 
       if (paraRef.current) {
@@ -307,7 +299,7 @@ export default function Hero({
   }, { scope: sectionRef });
 
   return (
-    <section ref={sectionRef} className="relative h-screen w-screen overflow-hidden">
+    <section ref={sectionRef} className="relative min-h-screen h-screen w-full overflow-hidden">
       <ShaderBackground />
       <div
         className="relative mx-auto flex max-w-7xl flex-col items-start gap-6 px-6 pb-24 pt-36 sm:gap-8 sm:pt-44 md:px-10 lg:px-16">
@@ -377,8 +369,6 @@ export default function Hero({
           })}
         </ul>
       </div>
-      
-
       
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent" />
