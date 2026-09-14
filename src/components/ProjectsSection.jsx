@@ -197,7 +197,7 @@ const ProjectPin = ({ title, href, image }) => {
 
           {image ? (
             <div className="flex flex-1 w-full rounded-xl overflow-hidden mt-2">
-              <img src={image} alt={title} className="w-full h-full object-cover" />
+              <img src={image} alt={title} loading="lazy" decoding="async" className="w-full h-full object-cover" />
             </div>
           ) : (
             <div className="flex flex-1 w-full rounded-xl bg-gradient-to-br from-violet-500/80 via-purple-500/80 to-blue-500/80 mt-2" />

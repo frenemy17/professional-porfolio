@@ -37,6 +37,8 @@ export function MarqueeDemo() {
             <img 
               src={tech.src} 
               alt={tech.name}
+              loading="lazy"
+              decoding="async"
               className="h-8 w-8 object-contain filter brightness-90 hover:brightness-110 transition-all duration-300"
             />
             <span className="font-medium" style={{fontFamily: 'var(--font-jetbrains-mono)'}}>{tech.name}</span>
