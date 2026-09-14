@@ -14,45 +14,30 @@ export default function SkillsSection() {
   const marqueeRef = useRef(null);
 
   const techStack = [
-    
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    "https://www.vectorlogo.zone/logos/nextjs/nextjs-icon.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-    "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
-    "https://www.vectorlogo.zone/logos/framer/framer-icon.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-    "https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
-    "https://www.vectorlogo.zone/logos/framer/framer-icon.svg",
-    
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-    "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-    "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
-    "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    "https://www.vectorlogo.zone/logos/nextjs/nextjs-icon.svg",
-    
-    
-    
-    
-    
-    
+    "/icons/python.svg",
+    "/icons/fastapi.svg",
+    "/icons/react.svg",
+    "/icons/nextjs.svg",
+    "/icons/typescript.svg",
+    "/icons/javascript.svg",
+    "/icons/nodejs.svg",
+    "/icons/tailwindcss.svg",
+    "/icons/postgresql.svg",
+    "/icons/mongodb.svg",
+    "/icons/redis.svg",
+    "/icons/supabase.svg",
+    "/icons/docker.svg",
+    "/icons/git.svg",
+    "/icons/figma.svg",
+    "/icons/framer.svg",
+    "/icons/html5.svg",
+    "/icons/css3.svg",
+    "/icons/firebase.svg",
+    "/icons/python.svg",
+    "/icons/fastapi.svg",
+    "/icons/react.svg",
+    "/icons/nextjs.svg",
+    "/icons/postgresql.svg"
   ];
 
   useGSAP(() => {

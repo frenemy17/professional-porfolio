@@ -41,7 +41,7 @@ export default function ProjectsSection() {
         <ProjectPin
           title="GemTrack Demo"
           href="https://gem-track-five.vercel.app/"
-          image="https://images.pexels.com/photos/1927259/pexels-photo-1927259.jpeg"
+          image="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1000&auto=format&fit=crop"
         />
       ),
       className: "col-span-1 lg:col-span-3 border-b border-white/10",

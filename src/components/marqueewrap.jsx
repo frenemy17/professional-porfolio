@@ -1,54 +1,23 @@
 import { Marquee } from "@/components/ui/marquee"
 
 const techLogos = [
-  {
-    name: "React",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-  },
-  {
-    name: "Next.js",
-    src: "https://www.vectorlogo.zone/logos/nextjs/nextjs-icon.svg"
-  },
-  {
-    name: "TypeScript",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-  },
-  {
-    name: "Node.js",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-  },
-  {
-    name: "Tailwind CSS",
-    src: "https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg"
-  },
-  {
-    name: "MongoDB",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-  },
-  {
-    name: "Git",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-  },
-  {
-    name: "Figma",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
-  },
-  {
-    name: "Framer",
-    src: "https://www.vectorlogo.zone/logos/framer/framer-icon.svg"
-  },
-  {
-    name: "HTML5",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-  },
-  {
-    name: "CSS3",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-  },
-  {
-    name: "Python",
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-  }
+  { name: "Python", src: "/icons/python.svg" },
+  { name: "FastAPI", src: "/icons/fastapi.svg" },
+  { name: "React", src: "/icons/react.svg" },
+  { name: "Next.js", src: "/icons/nextjs.svg" },
+  { name: "TypeScript", src: "/icons/typescript.svg" },
+  { name: "Node.js", src: "/icons/nodejs.svg" },
+  { name: "Tailwind CSS", src: "/icons/tailwindcss.svg" },
+  { name: "PostgreSQL", src: "/icons/postgresql.svg" },
+  { name: "MongoDB", src: "/icons/mongodb.svg" },
+  { name: "Redis", src: "/icons/redis.svg" },
+  { name: "Supabase", src: "/icons/supabase.svg" },
+  { name: "Docker", src: "/icons/docker.svg" },
+  { name: "Git", src: "/icons/git.svg" },
+  { name: "Figma", src: "/icons/figma.svg" },
+  { name: "Framer", src: "/icons/framer.svg" },
+  { name: "HTML5", src: "/icons/html5.svg" },
+  { name: "CSS3", src: "/icons/css3.svg" }
 ];
 
 export function MarqueeDemo() {
